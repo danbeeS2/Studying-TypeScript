@@ -1,24 +1,27 @@
-// 타입 가드(Guards)
+// 인터페이스 (interface)
 
-function logText(el: Element) {
-  console.log(el.textContent);
+// 선택적 속성 - ?
+// 읽기전용 속성 - readonly
+
+interface User {
+  name: string;
+  readonly age: number;
+  isValid?: boolean;
 }
 
-const h1El = document.querySelector("h1");
-if (h1El instanceof HTMLHeadingElement) {
-  logText(h1El);
-}
+const heropy: User = {
+  name: "Heropy",
+  age: 85,
+  isValid: true,
+};
+heropy.isValid = false;
+// heropy.age = 22
 
-function add(val: string | number | boolean) {
-  let res = "Result => ";
-  if (typeof val === "number") {
-    res += val.toFixed(2);
-  }
-  if (typeof val === "string") {
-    res += val.toUpperCase();
-  }
-  console.log(res);
-}
+const neo: User = {
+  name: "Neo",
+  age: 22,
+};
 
-add(3.141592);
-add("hello world!!");
+// 함수 타입 - 호출 시그니처(Call Signature)
+// 인덱스 가능 타입 - 인덱스 시그니처(Index Signature) => 대괄호 표기법으로 속성 조회(인덱싱)할 때, 인터페이스에는 인덱스 가능 타입이 지정되어 있어야 함!
+// 확장(상속)

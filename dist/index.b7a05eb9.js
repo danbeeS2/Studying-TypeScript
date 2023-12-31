@@ -575,20 +575,22 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"jeorp":[function(require,module,exports) {
-// 타입 가드(Guards)
-function logText(el) {
-    console.log(el.textContent);
-}
-const h1El = document.querySelector("h1");
-if (h1El instanceof HTMLHeadingElement) logText(h1El);
-function add(val) {
-    let res = "Result => ";
-    if (typeof val === "number") res += val.toFixed(2);
-    if (typeof val === "string") res += val.toUpperCase();
-    console.log(res);
-}
-add(3.141592);
-add("hello world!!");
+// 인터페이스 (interface)
+// 선택적 속성 - ?
+// 읽기전용 속성 - readonly
+const heropy = {
+    name: "Heropy",
+    age: 85,
+    isValid: true
+};
+heropy.isValid = false;
+// heropy.age = 22
+const neo = {
+    name: "Neo",
+    age: 22
+}; // 함수 타입 - 호출 시그니처(Call Signature)
+ // 인덱스 가능 타입 - 인덱스 시그니처(Index Signature) => 대괄호 표기법으로 속성 조회(인덱싱)할 때, 인터페이스에는 인덱스 가능 타입이 지정되어 있어야 함!
+ // 확장(상속)
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
 
