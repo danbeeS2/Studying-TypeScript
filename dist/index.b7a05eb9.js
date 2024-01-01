@@ -576,17 +576,24 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"jeorp":[function(require,module,exports) {
 // 인터페이스 (interface)
-// 함수 타입 - 호출 시그니처(Call Signature) for 재사용
+// 인덱스 가능 타입 - 인덱스 시그니처(Index Signature)
+// 배열
+const fruits = [
+    "Apple",
+    "Banana",
+    "Cherry"
+];
+console.log(fruits[1]);
 const heropy = {
     name: "Heropy",
-    age: 85,
-    // 함수 데이터
-    getName (message) {
-        console.log(message);
-        return this.name; // 화살표 함수가 아니고 알반함수이므로 this는 호출될 때 결정됨
-    }
+    age: 85
 };
-heropy.getName("Hello~~");
+heropy["isValid"] = true;
+heropy["emails"] = [
+    "thesecon@gamil.com",
+    "test@gamil.com"
+];
+console.log(heropy);
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
 

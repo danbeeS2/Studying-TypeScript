@@ -1,24 +1,23 @@
 // 인터페이스 (interface)
-// 함수 타입 - 호출 시그니처(Call Signature) for 재사용
+// 인덱스 가능 타입 - 인덱스 시그니처(Index Signature)
 
-interface GetUser {
-  // (함수 매개변수 : 타입): 함수가 호출되고 나서 반환하는 타입
-  (param: string): string;
+// 배열
+interface Fruits {
+  [item: number]: string;
 }
+const fruits: Fruits = ["Apple", "Banana", "Cherry"];
+console.log(fruits[1]);
 
+// 객체
 interface User {
+  [key: string]: unknown;
   name: string;
   age: number;
-  getName: GetUser;
 }
-
 const heropy: User = {
   name: "Heropy",
   age: 85,
-  // 함수 데이터
-  getName(message: string) {
-    console.log(message);
-    return this.name; // 화살표 함수가 아니고 알반함수이므로 this는 호출될 때 결정됨
-  },
 };
-heropy.getName("Hello~~");
+heropy["isValid"] = true;
+heropy["emails"] = ["thesecon@gamil.com", "test@gamil.com"];
+console.log(heropy);
