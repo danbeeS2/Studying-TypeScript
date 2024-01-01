@@ -1,50 +1,20 @@
-// 타입 별칭(Alias)
-// 부여된 별칭(이름)을 통해서 재사용하는 용도로 사용
-type TypeA = string;
-type TypeB = string | number | boolean;
-type User =
-  | {
-      name: string;
-      age: number;
-      isValid: boolean;
-    }
-  | [string, number, boolean];
+// 함수 - 명시적 this 지정
+// this라는 키워드를 사용할 때다자 명시적으로 타입을 지정할 필요는 없음
+// BUT this라는 타입이 정확하게 무엇인지 알 수 없는 환경에서 this가 무엇인지 개발자가 타입스크립트에게 알려줄 수 있는 방법이다.
 
-const userA: User = {
-  name: "Neo",
-  age: 85,
-  isValid: true,
-};
-const userB: User = ["Evan", 36, false];
-
-function someFunc(param: TypeB): TypeA {
-  switch (typeof param) {
-    case "string":
-      return param.toUpperCase();
-    case "number":
-      return param.toFixed(2);
-    default:
-      return "Boolean!";
-  }
-}
-
-// 인터페이스를 대신해서 작성할 수 있음
-// 인터페이스와 타입 별칭의 기능적 차이는 없으나, 인터페이스 방식을 더 권장함!
-// 타입 별칭은 객체 데이터의 타입을 만드는 구조라기 보다는 다양한 타입의 별칭을 지정하는 용도라서 사용 범위가 조금 더 넓은데
-// 인터페이스는 함수나 배열 데이터의 타입 지정도 가능하지만 기본적으로는 객체 데이터를 전제하므로!
-type TypeUser = {
+interface Cat {
   name: string;
   age: number;
-  isValid: boolean;
+}
+const cat: Cat = {
+  name: "Lucky",
+  age: 3,
 };
-interface IUser {
-  name: string;
-  age: number;
-  isValid: boolean;
+
+function hello(this: Cat, message: string) {
+  console.log(`Hello ${this.name}, ${message}`);
+  // 일반함수 안에서의 this는 호출되는 위치에서 정의됨 (호출되기 전까지는 this가 무엇인지 알 수 없음)
 }
 
-const heropy: TypeUser = {
-  name: "Heropy",
-  age: 33,
-  isValid: true,
-};
+hello.call(cat, "You are pretty awesome!");
+// call : 함수나 메소드 뒤에서 바로 사용해서 그 함수나 메소드가 어떤 대상(첫번째 인수)에서 실행될 것인지를 결정

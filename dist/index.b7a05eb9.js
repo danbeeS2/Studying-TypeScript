@@ -575,33 +575,16 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"jeorp":[function(require,module,exports) {
-// 타입 별칭
-// 부여된 별칭(이름)을 통해서 재사용하는 용도로 사용
-const userA = {
-    name: "Neo",
-    age: 85,
-    isValid: true
+// 함수 - 명시적 this 지정
+const cat = {
+    name: "Lucky",
+    age: 3
 };
-const userB = [
-    "Evan",
-    36,
-    false
-];
-function someFunc(param) {
-    switch(typeof param){
-        case "string":
-            return param.toUpperCase();
-        case "number":
-            return param.toFixed(2);
-        default:
-            return "Boolean!";
-    }
+function hello(message) {
+    console.log(`Hello ${this.name}, ${message}`);
+// 일반함수 안에서의 this는 호출되는 위치에서 정의됨 (호출되기 전까지는 this가 무엇인지 알 수 없음)
 }
-const heropy = {
-    name: "Heropy",
-    age: 33,
-    isValid: true
-};
+hello.call(cat, "You are pretty awesome!"); // call : 함수나 메소드 뒤에서 바로 사용해서 그 함수나 메소드가 어떤 대상(첫번째 인수)에서 실행될 것인지를 결정
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
 
