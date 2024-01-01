@@ -1,25 +1,39 @@
 // 인터페이스 (interface)
-// 인덱스 가능 타입 - 인덱스 시그니처(Index Signature)
+// 확장(상속)
 
-interface Payload {
-  [key: string]: unknown;
-}
-function logValues(payload: Payload) {
-  for (const key in payload) {
-    console.log(payload[key]);
-  }
-}
-
-interface User {
-  [key: string]: unknown; // 2. 인덱싱 가능한 타입 추가
+interface UserA {
   name: string;
   age: number;
+}
+interface UserB extends UserA {
   isValid: boolean;
 }
-const heropy: User = {
+
+const heropy: UserA = {
   name: "Heropy",
   age: 85,
+  // isValid: true,
+};
+const neo: UserB = {
+  name: "Neo",
+  age: 102,
   isValid: true,
 };
-console.log(heropy);
-logValues(heropy); // 1. logValues에서 사용하려면 인덱싱 가능한 타입으로 바꿔줘야 함
+
+// ----------------------------------------------
+
+interface FullName {
+  firstName: string;
+  lastName: string;
+}
+// 중복되는 인터페이스에서
+interface FullName {
+  middleName: string; // 어떤 특정 속성의 타입을 추가로 작성 가능
+  lastName: string; // 기존에 존재하는 속성의 이름을 작성했다면! 기존의 속성 타입을 그대로 명시해줘야만 문제가 발생하지 않는다
+}
+
+const fullName: FullName = {
+  firstName: "Tomas",
+  middleName: "Sean",
+  lastName: "Connery",
+};
