@@ -1,39 +1,50 @@
-// 인터페이스 (interface)
-// 확장(상속)
+// 타입 별칭(Alias)
+// 부여된 별칭(이름)을 통해서 재사용하는 용도로 사용
+type TypeA = string;
+type TypeB = string | number | boolean;
+type User =
+  | {
+      name: string;
+      age: number;
+      isValid: boolean;
+    }
+  | [string, number, boolean];
 
-interface UserA {
+const userA: User = {
+  name: "Neo",
+  age: 85,
+  isValid: true,
+};
+const userB: User = ["Evan", 36, false];
+
+function someFunc(param: TypeB): TypeA {
+  switch (typeof param) {
+    case "string":
+      return param.toUpperCase();
+    case "number":
+      return param.toFixed(2);
+    default:
+      return "Boolean!";
+  }
+}
+
+// 인터페이스를 대신해서 작성할 수 있음
+// 인터페이스와 타입 별칭의 기능적 차이는 없으나, 인터페이스 방식을 더 권장함!
+// 타입 별칭은 객체 데이터의 타입을 만드는 구조라기 보다는 다양한 타입의 별칭을 지정하는 용도라서 사용 범위가 조금 더 넓은데
+// 인터페이스는 함수나 배열 데이터의 타입 지정도 가능하지만 기본적으로는 객체 데이터를 전제하므로!
+type TypeUser = {
   name: string;
   age: number;
-}
-interface UserB extends UserA {
+  isValid: boolean;
+};
+interface IUser {
+  name: string;
+  age: number;
   isValid: boolean;
 }
 
-const heropy: UserA = {
+const heropy: TypeUser = {
   name: "Heropy",
-  age: 85,
-  // isValid: true,
-};
-const neo: UserB = {
-  name: "Neo",
-  age: 102,
+  age: 33,
   isValid: true,
-};
-
-// ----------------------------------------------
-
-interface FullName {
-  firstName: string;
-  lastName: string;
-}
-// 중복되는 인터페이스에서
-interface FullName {
-  middleName: string; // 어떤 특정 속성의 타입을 추가로 작성 가능
-  lastName: string; // 기존에 존재하는 속성의 이름을 작성했다면! 기존의 속성 타입을 그대로 명시해줘야만 문제가 발생하지 않는다
-}
-
-const fullName: FullName = {
-  firstName: "Tomas",
-  middleName: "Sean",
-  lastName: "Connery",
 };

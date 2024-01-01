@@ -575,21 +575,32 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"jeorp":[function(require,module,exports) {
-// 인터페이스 (interface)
-// 확장(상속)
-const heropy = {
-    name: "Heropy",
-    age: 85
-};
-const neo = {
+// 타입 별칭
+// 부여된 별칭(이름)을 통해서 재사용하는 용도로 사용
+const userA = {
     name: "Neo",
-    age: 102,
+    age: 85,
     isValid: true
 };
-const fullName = {
-    firstName: "Tomas",
-    middleName: "Sean",
-    lastName: "Connery"
+const userB = [
+    "Evan",
+    36,
+    false
+];
+function someFunc(param) {
+    switch(typeof param){
+        case "string":
+            return param.toUpperCase();
+        case "number":
+            return param.toFixed(2);
+        default:
+            return "Boolean!";
+    }
+}
+const heropy = {
+    name: "Heropy",
+    age: 33,
+    isValid: true
 };
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
