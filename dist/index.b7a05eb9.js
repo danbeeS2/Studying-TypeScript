@@ -575,16 +575,26 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"jeorp":[function(require,module,exports) {
-// 함수 - 명시적 this 지정
-const cat = {
-    name: "Lucky",
-    age: 3
-};
-function hello(message) {
-    console.log(`Hello ${this.name}, ${message}`);
-// 일반함수 안에서의 this는 호출되는 위치에서 정의됨 (호출되기 전까지는 this가 무엇인지 알 수 없음)
+// 함수 - 오버로딩(Overloading)
+// 1)
+function add1(a, b) {
+    return a + b;
 }
-hello.call(cat, "You are pretty awesome!"); // call : 함수나 메소드 뒤에서 바로 사용해서 그 함수나 메소드가 어떤 대상(첫번째 인수)에서 실행될 것인지를 결정
+function add2(a, b) {
+    return a + b;
+}
+add1("hello ", "world!"); // 'hello world!'
+add2(1, 2); // 3
+add1("hello ", 2);
+add2("hello ", 2);
+// 함수 구현(any: 실제 타입이라기 보다는 타입 선언의 내용이 어떤 방식으로든 할당될 수 있다는 의미!)
+function add(a, b) {
+    return a + b;
+}
+add("hello ", "world!"); // 'hello world!'
+add(1, 2); // 3
+add("hello ", 2);
+add(1, "world");
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
 
