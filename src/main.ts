@@ -1,23 +1,25 @@
 // 인터페이스 (interface)
 // 인덱스 가능 타입 - 인덱스 시그니처(Index Signature)
 
-// 배열
-interface Fruits {
-  [item: number]: string;
-}
-const fruits: Fruits = ["Apple", "Banana", "Cherry"];
-console.log(fruits[1]);
-
-// 객체
-interface User {
+interface Payload {
   [key: string]: unknown;
+}
+function logValues(payload: Payload) {
+  for (const key in payload) {
+    console.log(payload[key]);
+  }
+}
+
+interface User {
+  [key: string]: unknown; // 2. 인덱싱 가능한 타입 추가
   name: string;
   age: number;
+  isValid: boolean;
 }
 const heropy: User = {
   name: "Heropy",
   age: 85,
+  isValid: true,
 };
-heropy["isValid"] = true;
-heropy["emails"] = ["thesecon@gamil.com", "test@gamil.com"];
 console.log(heropy);
+logValues(heropy); // 1. logValues에서 사용하려면 인덱싱 가능한 타입으로 바꿔줘야 함

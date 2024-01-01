@@ -577,23 +577,16 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"jeorp":[function(require,module,exports) {
 // 인터페이스 (interface)
 // 인덱스 가능 타입 - 인덱스 시그니처(Index Signature)
-// 배열
-const fruits = [
-    "Apple",
-    "Banana",
-    "Cherry"
-];
-console.log(fruits[1]);
+function logValues(payload) {
+    for(const key in payload)console.log(payload[key]);
+}
 const heropy = {
     name: "Heropy",
-    age: 85
+    age: 85,
+    isValid: true
 };
-heropy["isValid"] = true;
-heropy["emails"] = [
-    "thesecon@gamil.com",
-    "test@gamil.com"
-];
 console.log(heropy);
+logValues(heropy); // 1. logValues에서 사용하려면 인덱싱 가능한 타입으로 바꿔줘야 함
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
 
