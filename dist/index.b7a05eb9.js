@@ -576,21 +576,17 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"jeorp":[function(require,module,exports) {
 // 인터페이스 (interface)
-// 선택적 속성 - ?
-// 읽기전용 속성 - readonly
+// 함수 타입 - 호출 시그니처(Call Signature) for 재사용
 const heropy = {
     name: "Heropy",
     age: 85,
-    isValid: true
+    // 함수 데이터
+    getName (message) {
+        console.log(message);
+        return this.name; // 화살표 함수가 아니고 알반함수이므로 this는 호출될 때 결정됨
+    }
 };
-heropy.isValid = false;
-// heropy.age = 22
-const neo = {
-    name: "Neo",
-    age: 22
-}; // 함수 타입 - 호출 시그니처(Call Signature)
- // 인덱스 가능 타입 - 인덱스 시그니처(Index Signature) => 대괄호 표기법으로 속성 조회(인덱싱)할 때, 인터페이스에는 인덱스 가능 타입이 지정되어 있어야 함!
- // 확장(상속)
+heropy.getName("Hello~~");
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
 
