@@ -1,26 +1,52 @@
-// 함수 - 오버로딩(Overloading)
-// 함수를 여러개 만들지 않더라도 함수의 타입 선언부를 구현부 위에 여러개 만들어주면 같은 함수라도 타입을 사용하는 방법을 여러개로 관리할 수 있음!
+// 클래스
 
-// 1)
-function add1(a: string, b: string) {
-  return a + b;
-}
-function add2(a: number, b: number) {
-  return a + b;
-}
-add1("hello ", "world!"); // 'hello world!'
-add2(1, 2); // 3
-add1("hello ", 2);
-add2("hello ", 2);
+// 접근 제어자(Access Modifiers)
+// public - 어디에서나 자유롭게 접근 가능, 클래스 바디에서 생략 (명시적으로 작성해주자)
+// protected - 나와 파생된 후손 클래스 내에서 접근 가능
+// private - 내 클래스에서만 접근 가능
 
-// 2)
-function add(a: string, b: string): string; // 첫번째 타입 선언
-function add(a: number, b: number): number; // 두번째 타입 선언
-// 함수 구현(any: 실제 타입이라기 보다는 타입 선언의 내용이 어떤 방식으로든 할당될 수 있다는 의미!)
-function add(a: any, b: any) {
-  return a + b;
+class UserA {
+  // this로 접근할 수 있는 각각의 속성들은
+  // constructor 함수 이전에 클래스 바디부분에 타입이 지정되어 있어야 함
+  // 속성에 타입을 붙일 때는 접근 제어자를 작성해줘야 함
+  // public first: string = "";
+  // protected last: string = "";
+  // private age: number = 0;
+
+  // constructor(first: string, last: string, age: number) {
+  //   this.first = first;
+  //   this.last = last;
+  //   this.age = age;
+  // }
+
+  // 중복 코드 제거 (매개변수에서 public 사용시 생략 불가능!)
+  constructor(
+    public first: string = "",
+    public last: string = "",
+    public age: number = 0
+  ) {
+    // ...
+  }
+  protected getAge() {
+    return `${this.first} ${this.last} is ${this.age}`;
+  }
 }
-add("hello ", "world!"); // 'hello world!'
-add(1, 2); // 3
-add("hello ", 2);
-add(1, "world");
+
+class UserB extends UserA {
+  getAge() {
+    return `${this.first} ${this.last} is ${this.age}!`;
+  }
+}
+
+class UserC extends UserB {
+  getAge() {
+    return `${this.first} ${this.last} is ${this.age}!!`;
+  }
+}
+
+// 인스턴스
+const neo = new UserA("Neo", "Anderson", 102);
+console.log(neo.first);
+console.log(neo.last);
+console.log(neo.age);
+neo.getAge();
