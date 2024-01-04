@@ -6,7 +6,8 @@
     "moduleResolution": "Node", // 모듈의 해석 방식 지정 (어떤 경로를 작성할 때 특정폴더 안에 있는 index라는 이름을 가진 자바스크립트 파일은 생략이 가능)
     "esModuleInterop": true, // 우리는 ESM방식을 사용하는데 node.js에서는 common.js 방식을 사용 => 둘다 호환해서 사용할 수 있도록 지정
     "lib": ["ESNext", "DOM"], // 타입스크립트를 자바스크립트로 코드를 컴파일할때 내부적으로 사용해야하는 라이브러리들의 목록 지정
-    "strict": true // 타입스크립트의 문법을 엄격하게 쓰겠다
+    "strict": true, // 타입스크립트의 문법을 엄격하게 쓰겠다
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src/**/*.ts"], // 프로젝트의 어느 부분에서 타입스크립트 파일을 찾을 수 있는지 경로 지정
   "exclude": [

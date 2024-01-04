@@ -1,22 +1,9 @@
-// 제네릭(Generic) - 인터페이스, 제약 조건(Constraints)
+/// <reference path="loadsh.d.ts" />
+// 파일 이름이 패키지 이름과 일치하지 않을 시 참조 경로를 명시해줘야 함
+// 삼중 슬래시 지시자(Triple-slash directive), 참조 태그(Reference Tag)
+import _ from "lodash";
 
-interface MyData<T extends string | number[]> {
-  name: string;
-  value: T;
-}
-const dataA: MyData<string> = {
-  name: "Data A",
-  value: "Hello world",
-};
-const dataB: MyData<number> = {
-  name: "Data B",
-  value: 1234,
-};
-const dataC: MyData<boolean> = {
-  name: "Data A",
-  value: true,
-};
-const dataD: MyData<number[]> = {
-  name: "Data A",
-  value: [1, 2, 3, 4],
-};
+const str = "the brown lfox jumps over the lazy dog.";
+console.log(_.camelCase(str));
+console.log(_.snakeCase(str));
+console.log(_.kebabCase(str));
