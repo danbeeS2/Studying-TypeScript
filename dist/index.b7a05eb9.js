@@ -575,43 +575,46 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"jeorp":[function(require,module,exports) {
-// 클래스
-// 접근 제어자(Access Modifiers)
-// public - 어디에서나 자유롭게 접근 가능, 클래스 바디에서 생략 (명시적으로 작성해주자)
-// protected - 나와 파생된 후손 클래스 내에서 접근 가능
-// private - 내 클래스에서만 접근 가능
-class UserA {
-    constructor(first, last, age){
-        // this로 접근할 수 있는 각각의 속성들은
-        // constructor 함수 이전에 클래스 바디부분에 타입이 지정되어 있어야 함
-        // 속성에 타입을 붙일 때는 접근 제어자를 작성해줘야 함
-        this.first = "";
-        this.last = "";
-        this.age = 0;
-        this.first = first;
-        this.last = last;
-        this.age = age;
-    }
-    getAge() {
-        return `${this.first} ${this.last} is ${this.age}`;
-    }
+// 제네릭(Generic)
+// 함수
+// 오버로딩
+// function toArray(a: string, b: string): string[];
+// function toArray(a: number, b: number): number[];
+// function toArray(a: boolean, b: boolean): boolean[];
+// function toArray(a: Obj, b: Obj): Obj[];
+// function toArray(a: Arr, b: Arr): Arr[];
+// function toArray(a: any, b: any) {
+//   return [a, b];
+// }
+// 제네릭 문법
+function toArray(a, b) {
+    return [
+        a,
+        b
+    ];
 }
-class UserB extends UserA {
-    getAge() {
-        return `${this.first} ${this.last} is ${this.age}!`;
-    }
-}
-class UserC extends UserB {
-    getAge() {
-        return `${this.first} ${this.last} is ${this.age}!!`;
-    }
-}
-// 인스턴스
-const neo = new UserA("Neo", "Anderson", 102);
-console.log(neo.first);
-console.log(neo.last);
-console.log(neo.age);
-neo.getAge();
+console.log(// 제네릭 함수 호출 시에도 타입이 무엇인지 명시적으로 타입 제공 가능
+toArray("Neo", "Anderson"), // 타입스크립트가 타입 추론하도록 해도 됨(권장)
+toArray(1, 2), toArray(true, false), toArray({
+    x: 1
+}, {
+    x: 2
+}), // 우리가 의도한 인자를 두개만 가지는 튜플 타입이 아니지만 에러가 안남 => 타입을 명시적으로 제공해야 함
+toArray([
+    1,
+    2
+], [
+    3,
+    4,
+    5,
+    "\uBB38\uC790"
+]), toArray([
+    1,
+    2
+], [
+    3,
+    4
+]));
 
 },{}]},["d8lhj","jeorp"], "jeorp", "parcelRequire0ed1")
 
