@@ -1,42 +1,22 @@
-// 제네릭(Generic) - 클래스
+// 제네릭(Generic) - 인터페이스, 제약 조건(Constraints)
 
-class User<P> {
-  // public payload: P;
-  // constructor(payload: P) {
-  //   this.payload = payload;
-  // }
-  // getPayload() {
-  //   return this.payload;
-  // }
-
-  // 중복 코드 제거
-  constructor(public payload: P) {}
-  getPayload() {
-    return this.payload;
-  }
-}
-
-interface UserAType {
+interface MyData<T extends string | number[]> {
   name: string;
-  age: number;
-  isValid: boolean;
+  value: T;
 }
-interface UserBType {
-  name: string;
-  age: number;
-  emails: string[];
-}
-
-const heropy = new User<UserAType>({
-  name: "Heropy",
-  age: 23,
-  isValid: false,
-  // emails: [], // ?!
-});
-
-const neo = new User<UserBType>({
-  name: "Neo",
-  // ?!
-  emails: ["neo@gmail.com"],
-  age: 22,
-});
+const dataA: MyData<string> = {
+  name: "Data A",
+  value: "Hello world",
+};
+const dataB: MyData<number> = {
+  name: "Data B",
+  value: 1234,
+};
+const dataC: MyData<boolean> = {
+  name: "Data A",
+  value: true,
+};
+const dataD: MyData<number[]> = {
+  name: "Data A",
+  value: [1, 2, 3, 4],
+};
